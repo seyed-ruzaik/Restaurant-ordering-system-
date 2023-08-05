@@ -4,7 +4,7 @@ import Dish from "./dish";
 import Order from "./order";
 
 @Table({
-    tableName: "orderItems",
+    tableName: "orderitems",
     timestamps: true
 })
 export default class OrderItem extends Model {
