@@ -6,14 +6,14 @@ function getImageUrl(filename: string | undefined, type: string): string {
             return `${filename};`
         }
 
-        return `http://localhost:${process.env.APP_PORT}/uploads/categories/${filename}`;
+        return `http://3.133.159.195:${process.env.APP_PORT}/uploads/categories/${filename}`;
     }else {
         const urlRegex = /(https?|http):\/\/\S+/i;
         if (urlRegex.test(<string>filename)) {
             return `${filename};`
         }
 
-        return `http://localhost:${process.env.APP_PORT}/uploads/dishes/${filename}`;
+        return `http://3.133.159.195:${process.env.APP_PORT}/uploads/dishes/${filename}`;
     }
 }
 
