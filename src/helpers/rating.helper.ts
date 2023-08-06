@@ -47,7 +47,7 @@ export const createRatingHelper = async (req: Request, res: Response) => {
 // Get a specific rating by ID
 export const getRatingHelper = async (req: Request, res: Response) => {
     try {
-        const data = req?.body;
+        const data = req?.params;
         const id = data.id;
         const rating = await Rating.findByPk(id);
 
@@ -64,7 +64,9 @@ export const getRatingHelper = async (req: Request, res: Response) => {
 // Get all ratings
 export const getAllRatingsHelper = async (req: Request, res: Response) => {
     try {
-        const ratings = await Rating.findAll();
+        const ratings = await Rating.findAll({
+            limit: +req.params.limit,
+            offset: +req.params.offset});
         res.status(200).json(ratings);
     } catch (error) {
         res.status(500).json({ message: 'Error retrieving ratings', error });
@@ -101,7 +103,7 @@ export const updateRatingHelper = async (req: Request, res: Response) => {
 // Delete a rating by ID
 export const deleteRatingHelper = async (req: Request, res: Response) => {
     try {
-        const data = req?.body;
+        const data = req?.params;
         const id = data.id;
 
         const deletedCount = await Rating.destroy({ where: { id } });

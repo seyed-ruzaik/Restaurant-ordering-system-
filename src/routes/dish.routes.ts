@@ -8,8 +8,6 @@ import {
 import express from "express";
 const router = express.Router();
 const authentication = require('../middlewares/authorization');
-import {validateSchemaMiddleware} from "../middlewares/ajv-handler";
-import {deleteDishSchema, getDishSchema} from "../schema/dish.schema";
 
 // Routes for handling different dish operations
 
@@ -20,12 +18,12 @@ router.post("/add", authentication.verifyJWT, createDishController);
 router.put("/update", authentication.verifyJWT, updateDishController);
 
 // Route to delete a dish
-router.delete('/delete', authentication.verifyJWT, validateSchemaMiddleware(deleteDishSchema), deleteDishController);
+router.delete('/delete/id/:id', authentication.verifyJWT, deleteDishController);
 
 // Route to get a dish by its ID
-router.get('/getdish', authentication.verifyJWT, validateSchemaMiddleware(getDishSchema), getDishController);
+router.get('/getdish/id/:id', authentication.verifyJWT, getDishController);
 
 // Route to get all dishes
-router.get('/getalldishes', authentication.verifyJWT, getAllDishController);
+router.get('/getalldishes/limit/:limit/offset/:offset', authentication.verifyJWT, getAllDishController);
 
 export const dishRoutes = router;

@@ -49,42 +49,6 @@ export async function getTotalSalesReportHelper(req: Request, res: Response) {
     }
 }
 
-// export async function getTopSellingMenuItems(req: Request, res: Response) {
-//     try {
-//         // Get the required parameters from the request query
-//         const { startDate, endDate } = req.query;
-//
-//         // Execute the Sequelize query to calculate the top-selling menu items for the report
-//         const result = await Dish.findAll({
-//             attributes: [
-//                 'id',
-//                 'name',
-//                 [sequelize.fn('COUNT', sequelize.col('orderItems.id')), 'num_orders'],
-//                 [sequelize.fn('SUM', sequelize.col('orderItems.price')), 'total_revenue'],
-//             ],
-//             include: [
-//                 {
-//                     model: OrderItem,
-//                     as: 'orderItems',
-//                     attributes: [],
-//                     where: {
-//                         created_at: {
-//                             [sequelize.Op.between]: [startDate, endDate],
-//                         },
-//                     },
-//                 },
-//             ],
-//             group: ['Dish.id'],
-//             order: [[sequelize.literal('num_orders'), 'DESC']],
-//         });
-//
-//         // Send the report data in the response
-//         res.status(200).json(result);
-//     } catch (error) {
-//         res.status(500).json({ error: 'An error occurred while generating the report' });
-//     }
-// }
-
 export async function getTopSellingItemsByOrdersHelper(req: Request, res: Response) {
     try {
         const result = await OrderItem.findAll({

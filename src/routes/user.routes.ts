@@ -22,7 +22,7 @@ router.post("/register", validateSchemaMiddleware(registerSchema), registerContr
 router.post("/login", validateSchemaMiddleware(loginSchema), loginController);
 
 // Route to get user information (requires JWT authorization)
-router.get('/info', authentication.verifyJWT, getUserController);
+router.get('/info/limit/:limit/offset/:offset', authentication.verifyJWT, getUserController);
 
 // Export the router as userRoutes
 export const userRoutes = router;
