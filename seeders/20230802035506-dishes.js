@@ -8,7 +8,7 @@ module.exports = {
 
     for (let i = 0; i < NUM_DISHES; i++) {
       dishes.push({
-        name: faker.lorem.word(3),
+        name: faker.lorem.word(5),
         description: faker.lorem.words(10),
         price: faker.finance.amount(5, 30, 2),
         image: faker.image.urlLoremFlickr({ category: 'food' }), // Generate a random food image URL

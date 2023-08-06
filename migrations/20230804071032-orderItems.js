@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("orderItems", {
+    return queryInterface.createTable("orderitems", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,

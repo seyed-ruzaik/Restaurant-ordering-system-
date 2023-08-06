@@ -22,12 +22,14 @@ import {taskRoutes} from "./src/routes/task.routes";
     app.get("/", (_req,
                   res) => res.send("Welcome to Restaurant-Order-System-API"));
 
+
     /**
-     * Middleware
-     * Initializing passport middleware
+     * 1. Serves static files from the 'uploads' directory for /uploads route.
+     * 2. Parses incoming JSON data with a maximum limit of 20 megabytes.
+     * 3. Parses incoming URL-encoded data with a maximum limit of 20 megabytes,
+     * and allows parsing of nested objects using the qs library.
      */
-    // app.use(passport.initialize());
-    // applyPassportStrategy(passport);
+
     app.use('/uploads', express.static('uploads'));
     app.use(express.json({limit: "20mb"}));
     app.use(express.urlencoded({limit: "20mb", extended: true}));
