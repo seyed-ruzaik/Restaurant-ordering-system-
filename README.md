@@ -84,33 +84,33 @@ API Endpoints
 
 * POST /user/register: Register a new user
 * POST /user/login: Login an existing user
-* GET /user/info: Get all the user's profile (requires authentication)
+* GET /user/info/limit/:limit/offset/:offset : Get all the user's profile (requires authentication)
 
 2. Menu Management:
 
 ### A. Category Management
 
-* GET /category/getallcategory: Get all food categories in the menu (requires authentication)
-* GET /category/getcategory: Get a food category using the ID (requires authentication)
+* GET /getallcategory/limit/:limit/offset/:offset: Get all food categories in the menu (requires authentication)
+* GET /category/getcategory/id/:id : Get a food category using the ID (requires authentication)
 * POST /category/add: Add a new category to the menu (requires authentication)
 * PUT /category/update: Update a category item in the menu (requires authentication)
-* DELETE /category/delete: Delete a category from the menu (requires authentication)
+* DELETE /category/delete/id/:id : Delete a category from the menu (requires authentication)
 
 ### B. Dish Management
 
-* GET /dish/getdish: Get food item from ID (requires authentication)
-* GET /dish/getalldishes: Get all food items(requires authentication)
+* GET /dish/getdish/id/:id : Get food item from ID (requires authentication)
+* GET /dish/getalldishes/limit/:limit/offset/:offset : Get all food items(requires authentication)
 * POST /dish/add: Add a new dish to the menu (requires authentication)
 * PUT /dish/update: Update a dish item in the menu (requires authentication)
-* DELETE /category/delete: Delete a dish item from the menu (requires authentication)
+* DELETE /category/delete/id/:id : Delete a dish item from the menu (requires authentication)
 
 ### C. Rating's Management
 
-* GET /rating/getrating: Get the rating for a food item (requires authentication)
-* GET /rating/getallratings: Get all the ratings given to all the dishes (requires authentication)
+* GET /rating/getrating/id/:id: Get the rating for a food item (requires authentication)
+* GET /rating/getallratings/limit/:limit/offset/:offset : Get all the ratings given to all the dishes (requires authentication)
 * POST /rating/add: Add a new rating to a dish (requires authentication)
 * PUT /rating/update: Update the rating for a food item (requires authentication)
-* DELETE /rating/delete: Delete the rating for a food item (requires authentication)
+* DELETE /rating/delete/id/:id : Delete the rating for a food item (requires authentication)
 
 3. Order Management:
 
@@ -141,11 +141,23 @@ The advanced reporting functionality provides the following reports:
 
 * GET /report/top-selling-items/orders : Generate a report that displays the top-selling menu items based on orders.
 
+5. Create a new task
+
+* POST /task/add : This endpoint will create a new task.
+
+6. Get list of tasks
+
+* GET /task/get-tasks?status=complete&priority=Medium&startDate=2023-01-01&endDate=2023-07-31 : This endpoint will get the list of tasks based on the query parameters.
+
+7. Get list of tasks 
+
+* GET /task/get-tasks?page=1&perPage=5 : The request is asking the server to provide a list of tasks with pagination
+
 
 Data Validation
 ===============
 
-Request bodies are validated using AJV wherever it's necessay to ensure that the data provided is valid and meets the required format.
+Request bodies are validated using AJV wherever it's necessary to ensure that the data provided is valid and meets the required format.
 
 
 Error Handling

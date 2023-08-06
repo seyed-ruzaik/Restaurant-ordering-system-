@@ -9,15 +9,6 @@ export const createRatingSchema = {
     required: ['dish_id', 'user_id', 'rating']
 };
 
-// getRatingHelper Schema
-export const getRatingSchema = {
-    type: 'object',
-    properties: {
-        id: { type: 'integer', minimum: 1 }
-    },
-    required: ['id']
-};
-
 // updateRatingHelper Schema
 export const updateRatingSchema = {
     type: 'object',
@@ -26,13 +17,4 @@ export const updateRatingSchema = {
         rating: { type: 'number', minimum: 1, maximum: 5 }
     },
     required: ['id', 'rating']
-};
-
-// deleteRatingHelper Schema
-export const deleteRatingSchema = {
-    type: 'object',
-    properties: {
-        id: { type: 'integer', minimum: 1 }
-    },
-    required: ['id']
 };

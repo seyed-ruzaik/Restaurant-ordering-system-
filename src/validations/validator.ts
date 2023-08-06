@@ -35,7 +35,11 @@ export function isAllPresent(str: string) {
 //GET an item
 export async function getData (req: Request, res: Response, ModelName: ModelStatic){
     try {
-        const data = await ModelName.findAll({where: {}, attributes: {exclude: ["createdAt", "updatedAt"],},});
+        const data = await ModelName.findAll({
+            where: {},
+            attributes: {exclude: ["createdAt", "updatedAt"],},
+            limit: +req.params.limit,
+            offset: +req.params.offset});
         res.status(200).send(data); //send User Roles
     } catch (error) {
         await errorMessage(req, res, error.message);

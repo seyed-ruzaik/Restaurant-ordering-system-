@@ -9,7 +9,7 @@ import express from "express";
 const router = express.Router();
 const authentication = require('../middlewares/authorization');
 import {validateSchemaMiddleware} from "../middlewares/ajv-handler";
-import {createRatingSchema, updateRatingSchema, deleteRatingSchema, getRatingSchema} from "../schema/rating.schema";
+import {createRatingSchema, updateRatingSchema} from "../schema/rating.schema";
 
 // Routes for handling different rating operations
 
@@ -20,12 +20,12 @@ router.post("/add", authentication.verifyJWT, validateSchemaMiddleware(createRat
 router.put("/update", authentication.verifyJWT, validateSchemaMiddleware(updateRatingSchema), updateRatingController);
 
 // Route to delete a rating
-router.delete('/delete', authentication.verifyJWT, validateSchemaMiddleware(deleteRatingSchema), deleteRatingController);
+router.delete('/delete/id/:id', authentication.verifyJWT, deleteRatingController);
 
 // Route to get a rating by its ID
-router.get('/getrating', authentication.verifyJWT, validateSchemaMiddleware(getRatingSchema), getRatingController);
+router.get('/getrating/id/:id', authentication.verifyJWT, getRatingController);
 
 // Route to get all ratings
-router.get('/getallratings', authentication.verifyJWT, getAllRatingController);
+router.get('/getallratings/limit/:limit/offset/:offset', authentication.verifyJWT, getAllRatingController);
 
 export const ratingRoutes = router;

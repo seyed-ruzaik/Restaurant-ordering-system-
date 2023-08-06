@@ -90,7 +90,9 @@ export const createDishHelper = async (req: Request, res: Response) => {
 // Get all dishes
 export const getAllDishesHelper = async (_req: Request, res: Response) => {
     try {
-        const dishes: Dish[] = await Dish.findAll(); // Retrieve all dishes from the database
+        const dishes: Dish[] = await Dish.findAll({
+            limit:  +_req.params.limit,
+            offset: +_req.params.offset}); // Retrieve all dishes from the database
         const data: { // Create an array of dish data objects with selected properties
             image: string;
             category_id: number | undefined;
@@ -114,7 +116,7 @@ export const getAllDishesHelper = async (_req: Request, res: Response) => {
 
 // Get a dish by ID
 export const getDishByIdHelper = async (req: Request, res: Response) => {
-    const data = req?.body;
+    const data = req?.params;
     const dishId = data.id;
     try {
         const dish = await Dish.findByPk(dishId);
@@ -202,7 +204,7 @@ export const updateDishHelper = async (req: Request, res: Response) => {
 
 // Delete a dish by ID
 export const deleteDishHelper = async (req: Request, res: Response) => {
-    const data = req?.body;
+    const data = req?.params;
     const dishId = data.id;
     try {
         // Check if the dish with the provided ID exists

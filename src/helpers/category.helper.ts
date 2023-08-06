@@ -61,7 +61,9 @@ export const createCategoryHelper = async (req: Request, res: Response) => {
 // Get all categories
 export const getAllCategoriesHelper = async (req: Request, res: Response) => {
     try {
-        const categories: Category[] = await Category.findAll(); // Retrieve all categories from the database
+        const categories: Category[] = await Category.findAll({
+            limit: +req.params.limit,
+            offset: +req.params.offset}); // Retrieve all categories from the database
         const data: { // Create an array of category data objects with selected properties
             image: string | undefined;
             name: string;
@@ -79,7 +81,7 @@ export const getAllCategoriesHelper = async (req: Request, res: Response) => {
 
 // Get a specific category by ID
 export const getCategoryByIdHelper = async (req: Request, res: Response) => {
-    const data = req?.body;
+    const data = req?.params;
     const categoryId = data.id;
 
     try {
@@ -156,7 +158,7 @@ export const updateCategoryHelper = async (req: Request, res: Response) => {
 
 // Delete a category by ID
 export const deleteCategoryHelper = async (req: Request, res: Response) => {
-    const data = req?.body;
+    const data = req?.params;
     const categoryId = data.id;
 
     try {
