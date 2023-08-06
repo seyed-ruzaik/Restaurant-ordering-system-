@@ -7,7 +7,7 @@ module.exports = {
 
     for (let i = 0; i < NUM_CATEGORIES; i++) {
       dishCategories.push({
-        name: faker.lorem.word(5),
+        name: faker.lorem.word(7),
         image: faker.image.urlLoremFlickr({ category: 'food' }), // Generate a random food image URL
         created_at: new Date(),
         updated_at: new Date(),
